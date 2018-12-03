@@ -262,6 +262,8 @@ class LogStash::Inputs::Kafka < LogStash::Inputs::Base
                 event.set("[@metadata][kafka][offset]", record.offset)
                 event.set("[@metadata][kafka][key]", record.key)
                 event.set("[@metadata][kafka][timestamp]", record.timestamp)
+                event.set("[@metadata][kafka][timestamp_type]", record.timestampType.name)
+                event.set("[@metadata][kafka][headers]", record.headers.toString())
               end
               logstash_queue << event
             end
